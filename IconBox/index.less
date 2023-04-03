@@ -1,0 +1,82 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(200deg, #29323c, #485563);
+}
+
+@color: rgb(12, 177, 12);
+@n: 5;
+
+.icon-box {
+  display: flex;
+  flex-direction: row;
+  
+  a {
+    color: #fff;
+    margin: 0 30px;
+    text-decoration: none;
+    display: block;
+    position: relative;
+
+    .layer {
+      width: 70px;
+      height: 70px;
+
+      transition: 0.3s;
+
+      i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid @color;
+        border-radius: 6px;
+        transition: 0.3s;
+      }
+    }
+
+    .text {
+      position: absolute;
+      bottom: 0;
+      opacity: 0;
+      width: 100%;
+      text-align: center;
+      color: @color;
+      transition: 0.3s;
+    }
+
+    .icon {
+      color: @color;
+      font-size: 55px;
+      text-align: center;
+      line-height: 70px;
+    }
+
+    &:hover .text {
+      bottom: -35px;
+      opacity: 1;
+    }
+
+    &:hover .layer {
+      transform: rotate(-35deg) skew(20deg);
+    }
+
+    .loop(@i) when(@i <= @n) {
+      &:hover .layer i:nth-child(@{i}) {
+        opacity: 0.2 * @i;
+        transform: translate((@i - 1) * 5px, (@i - 1) * -5px);
+      }
+      .loop(@i + 1);
+    }
+    
+    .loop(1);
+  }
+}

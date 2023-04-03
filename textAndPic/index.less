@@ -1,0 +1,44 @@
+@width: 600px;
+@height: 100vh;
+@bgColor: green;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.left {
+  float: left;
+  width: @width;
+  height: @height;
+  background: url('./wolong.jpeg');
+  background-position: right center;
+  shape-outside: polygon(51% 0, 99% 51%, 53% 100%, 0 100%, 0 0);
+  clip-path: polygon(51% 0, 99% 51%, 53% 100%, 0 100%, 0 0);
+  shape-margin: 10px;
+}
+
+.right {
+  float: right;
+  width: @width;
+  height: @height;
+  shape-outside: polygon(0 0, 100% 0, 100% 100%, 34% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 34% 100%);
+  shape-margin: 10px;
+  background: url('./wolong.jpeg');
+  background-position: left center;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 28px;
+  background: #000;
+  height: @height;
+  color: #fff;
+
+  .title {
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+  }
+}

@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0; 
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #000;
+
+  .box {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+
+    &::after, &::before {
+      position: absolute;
+      content: "";
+      background: conic-gradient(transparent, transparent, transparent, rgb(211, 8, 252));
+      width: 500px;
+      height: 500px;
+      animation: action 3s linear infinite;
+    }
+  
+    &::before {
+      animation-delay: -1.5s;
+      background: conic-gradient(transparent, transparent, transparent, rgb(104, 102, 104));
+    }
+
+    span {
+      position: absolute;
+      background-color: red;
+      z-index: 1;
+      border-radius: 20px;
+      inset: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h3, h4 {
+        font-size: 60px;
+        font-weight: 400;
+        line-height: 120px;
+        color: #fff;
+        height: 140px;
+      }
+
+      h4 {
+        color: #000;
+        font-weight: 600;
+        font-size: 100px;
+        line-height: 100px;
+      }
+    }
+  }
+
+  @keyframes action {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

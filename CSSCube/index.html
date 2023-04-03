@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+ 
+<style>
+  /* 设置一个3D舞台 */
+  .stage {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    perspective: 800px; /* 设置透视距离 */
+  }
+
+  /* 设置一个立方体容器 */
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: rotateY(30deg);
+    transform-style: preserve-3d; /* 让子元素在3D空间中呈现 */
+    animation: rotate-cube 10s infinite linear; /* 添加动画效果 */
+  }
+
+  /* 定义六个面的样式 */
+  .cube .side {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    border: solid black thin;
+    background-color: rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+  }
+
+  /* 定义前后左右上下面的位置和角度 */
+  
+   .front {
+     transform : translateZ(100px);
+     background-color: rgba(229, 201, 201, 0.5) !important;
+   }
+   
+   .back {
+     transform : translateZ(-100px);
+     background-color: rgba(203, 15, 15, 0.5) !important;
+   }
+   
+   .left {
+     transform : rotateY(-90deg) translateZ(100px);
+     background-color: rgba(19, 227, 12, 0.5) !important;
+   }
+   
+   .right {
+     transform : rotateY(90deg) translateZ(100px);
+     background-color: rgba(245, 210, 31, 0.5) !important;
+   }
+   
+   .top {
+     transform : rotateX(-90deg) translateZ(100px);
+     background-color: rgba(66, 74, 236, 0.5) !important;
+   }
+   
+   .bottom {
+     transform : rotateX(90deg) translateZ(100px);
+     background-color: rgba(247, 14, 228, 0.155) !important;
+   }
+
+   /* 定义动画效果 */
+
+   @keyframes rotate-cube {
+     from {transform : rotateX(0deg) rotateY(0deg);}
+     to {transform : rotateX(360deg) rotateY(360deg);}
+  }
+</style>
+
+<!-- 创建一个立方体容器 -->
+<div class="stage">
+  <div class="cube">
+    <div class="side front">前</div>
+    <div class="side back">后</div>
+    <div class="side left">左</div>
+    <div class="side right">右</div>
+    <div class="side top">上</div>
+    <div class="side bottom">下</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+* {
+  margin:0px;
+  padding:0px;
+}
+body {
+  background: skyblue;
+}
+
+@ballSize: 10px;
+@containerSize: 150px;
+@n: 36;
+@pdeg: 360deg / @n;
+@animationTime: 2000ms;
+
+.loading {
+  width: @containerSize;
+  height: @containerSize;
+  margin: 50px auto;
+  position: relative;
+  border-radius: 50%;
+  // outline: 1px solid #fff;
+  perspective: 70px;
+  transform-style: preserve-3d;
+  .dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: @ballSize;
+    height: @ballSize;
+    margin-left: -@ballSize/2;
+    margin-top: -@ballSize/2;
+    
+    &::before, &::after {
+      content: ' ';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    
+    &::before {
+      background: #000;
+      top: -100%;
+      animation: moveBlack @animationTime infinite;
+    }
+    
+     &::after {
+      background: #fff;
+      top: 100%;
+      animation: moveWhite @animationTime infinite;
+    }
+  }
+}
+
+@keyframes moveBlack {
+  0% {
+    animation-timing-function: ease-in;
+  }
+  
+  25% {
+    transform: translate3d(0, 100%, @ballSize);
+    animation-timing-function: ease-out;
+  }
+  
+  50% {
+    transform: translate3d(0, 200%, 0);
+    animation-timing-function: ease-in;
+  }
+  
+  70% {
+    transform: translate3d(0, 100%, -@ballSize);
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes moveWhite {
+  0% {
+    animation-timing-function: ease-in;
+  }
+  
+  25% {
+    transform: translate3d(0, -100%, -@ballSize);
+    animation-timing-function: ease-out;
+  }
+  
+  50% {
+    transform: translate3d(0, -200%, 0);
+    animation-timing-function: ease-in;
+  }
+  
+  70% {
+    transform: translate3d(0, -100%, @ballSize);
+    animation-timing-function: ease-out;
+  }
+}
+
+
+.loop(@i) when(@i <= @n) {
+  .dot:nth-child(@{i}) {
+    transform: rotate(@i * @pdeg) translateY(-@containerSize/2);
+    &::before, &::after {
+      animation-delay: -@animationTime / @n * 6 * @i;
+    }
+  }
+  .loop(@i+1);
+}
+
+.loop(1);
+

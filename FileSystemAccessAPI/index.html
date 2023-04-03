@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File System Access API Test</title>
+</head>
+<body>
+  <Button id="openDirBtn">打开文件夹</Button>
+  <script>
+    window.onload = function() {
+      let btn = document.getElementById("openDirBtn")
+      btn.onclick = async () => {
+
+        try {
+          const dirHandle = await window.showDirectoryPicker();
+          console.log(dirHandle)
+          // await handleDir(dirHandle)
+          // console.log(dirHandle)
+
+          // let file = await dirHandle.children[0].getFile()
+
+          // const reader = new FileReader()
+          
+          // reader.onload = (evt) => {
+          //   console.log(evt.target.result)
+          // }
+          // reader.readAsText(file)
+
+        } catch (e) {
+          console.log(e)
+        }
+        
+      }
+
+      async function handleDir(dirHandle) {
+        let iterator = dirHandle.entries()
+
+        for await (let handle of iterator) {
+          
+          dirHandle.children = dirHandle.children ?? []
+          dirHandle.children.push(handle[1])
+          
+          let kind = handle[1].kind
+          
+          if (kind === 'directory') {
+            handleDir(handle[1])
+          }
+        }
+      }
+    }
+    
+  </script>
+</body>
+</html>

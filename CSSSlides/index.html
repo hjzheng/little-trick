@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS slides</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="scroll-x">
+    <div class="fake">0</div>
+    <div class="slide active">1</div>
+    <div class="slide">2</div>
+    <div class="slide">3</div>
+    <div class="slide">4</div>
+    <div class="slide">5</div>
+    <div class="fake">0</div>
+  </div>
+</body>
+<script>
+  window.onload = function() {
+    let sildes = document.querySelectorAll('div.slide')
+    
+    let n = sildes.length
+    let i = 0
+    
+    setInterval(() => {
+      clearActiveClass()
+      sildes[i].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+      sildes[i].classList.add('active')
+      i++
+      i = i%n
+    }, 2000)
+
+    function clearActiveClass() {
+      sildes.forEach((s) => {
+        s.classList.remove('active')
+      })
+    }
+
+  }
+</script>
+</html>

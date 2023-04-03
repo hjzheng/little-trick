@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/css-doodle@0.34.7/css-doodle.min.js"></script>
+  <title>CSS DOODLE</title>
+  <!--https://css-doodle.com/-->
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+ 
+  <css-doodle click-to-update>
+    :doodle {
+      @grid: 5 / 100vw 100vh;
+      background: #0a0c27;
+    }
+
+    @shape: bud 5;
+    background: hsla(
+      calc(360 - @i * 4), 70%, 68%, @r.8
+    );
+    transform:
+      scale(@r(.2, 1.2))
+      translate(@m2.@r(±50%));
+  </css-doodle>
+  
+</body>
+</html>

@@ -1,0 +1,41 @@
+body {
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.title {
+  color: #999;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  position: relative;
+
+  &::before {
+    content: 'Never put off what you can do today until tomorrow.';
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+    color: green;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 22px;
+    border-right: 5px solid #011e0e;
+    animation: textMove 5s linear infinite;
+  }
+}
+
+@keyframes textMove {
+  0% {
+    width: 0%
+  }
+
+  100% {
+    width: 100%
+  }
+}

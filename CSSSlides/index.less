@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.scroll-x {
+  width: 300px;
+  height: 200px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 10px;
+  white-space: nowrap;
+  overflow: auto;
+
+  .active {
+    box-shadow: 0px 1px 8px 3px #722828;
+  }
+
+  .fake {
+    width: 15px;
+    background: linear-gradient(0deg, #af4242, #d0ca13);
+    scroll-snap-align: end;
+    color: transparent;
+  }
+
+  div { 
+    display: inline-block;
+    text-align: center;
+    font-size: 100px;
+    line-height: 180px;
+    width: 260px;
+    height: 180px;
+    scroll-snap-align: center;
+    background: linear-gradient(30deg, #af4242, #d0ca13);
+    
+    &:nth-child(2) {
+      background: linear-gradient(90deg, #af4242, #d0ca13);
+    }
+    &:nth-child(3) {
+      background: linear-gradient(180deg, #af4242, #d0ca13);
+    }
+    &:nth-child(4) {
+      background: linear-gradient(270deg, #af4242, #d0ca13);
+    }
+    &:nth-child(5) {
+      background: linear-gradient(320deg, #af4242, #d0ca13);
+    }
+    &:nth-child(5) {
+      background: linear-gradient(350deg, #af4242, #d0ca13);
+    }
+  }
+
+}
+
+
+
+

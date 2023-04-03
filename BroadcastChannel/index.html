@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>music list</title>
+  <script src="./channel.js"></script>
+</head>
+<style>
+  body {
+    margin: 30px auto;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    line-height: 40px;
+    cursor: pointer;
+  }
+</style>
+<body>
+   <ul>
+    <li data-name="358232_j_s_song.ogg">358232_j_s_song.ogg</li>
+    <li data-name="376737_Skullbeatz___Bad_Cat_Maste.ogg">376737_Skullbeatz___Bad_Cat_Maste.ogg</li>
+    <li data-name="Project_Utopia.ogg">Project_Utopia.ogg</li>
+   </ul>
+</body>
+<script>
+  const channel = createChannel('message')
+  const ul = document.querySelector('ul')
+  
+  ul.addEventListener('click', (e) => {
+    if (e.target.nodeName === 'LI') {
+      if (channel.list.size === 0) {
+        window.open(`./play.html?name=${e.target.dataset.name}`, '_blank')
+      } else {
+        channel.postMessage({channelId: channel.id, message: {name: e.target.dataset.name}})
+      }
+    }
+  }, false)
+</script>
+</html>
