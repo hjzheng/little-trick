@@ -1,0 +1,56 @@
+/*
+hounidi api
+*/
+@property --x {
+  syntax: '<length>';
+  initial-value: 0px;
+  inherits: false;
+}
+
+@property --y {
+  syntax: '<length>';
+  initial-value: 0px;
+  inherits: false;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.ball {
+  transform: translateX(var(--x)), translateY(var(--y));
+  animation: x 2s, y 1s;
+  animation-timing-function: cubic-bezier(0.5, -800, 0.5, 800);
+  animation-iteration-count: infinite;
+}
+
+@keyframes x {
+  to {
+    --x: 1px;
+  }
+}
+
+@keyframes y {
+  to {
+    --y: 0.1px;
+  }
+}
