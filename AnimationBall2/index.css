@@ -7,9 +7,9 @@ hounidi api
   inherits: false;
 }
 
-@property --y {
-  syntax: '<length>';
-  initial-value: 0px;
+@property --r {
+  syntax: '<angle>';
+  initial-value: 0deg;
   inherits: false;
 }
 
@@ -37,8 +37,8 @@ hounidi api
 }
 
 .ball {
-  transform: translate(var(--x), var(--y));
-  animation: x 2s, y 1s;
+  transform: rotate(var(--r)) translate(var(--x));
+  animation: x 2s, r 8s;
   animation-timing-function: cubic-bezier(0.5, -800, 0.5, 800);
   animation-iteration-count: infinite;
 }
@@ -49,8 +49,8 @@ hounidi api
   }
 }
 
-@keyframes y {
+@keyframes r {
   to {
-    --y: 0.1px;
+    --r: 1deg;
   }
 }
