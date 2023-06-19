@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 200px;
+}
+
+.ball {
+    border: 1px dashed gray;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: moveX 2s linear infinite;
+}
+
+.inner {
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: moveY 2s cubic-bezier(0.55,-0.73, 1, 1) infinite;
+}
+
+@keyframes moveX {
+    to {
+        transform: translateX(200px);
+    }
+}
+
+@keyframes moveY {
+    to {
+        transform: translateY(600px);
+    }
+}
