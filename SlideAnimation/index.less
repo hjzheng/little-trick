@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+}
+
+@size: 200px;
+@n: 6;
+@pDeg: (360deg / @n);
+@r: (@size / 2);
+@R: (@r / sin((@pDeg / 2)));
+@innerSize: (@R * 2);
+
+.container {
+    width: @size;
+    height: @size;
+    border-radius: 50%;
+    outline: 5px solid #fff;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.inner {
+    width: @innerSize;
+    height: @innerSize;
+    border-radius: 50%;
+    position: relative;
+    // background-color: aquamarine;
+    flex-shrink: 0;
+    margin-top: @r;
+    
+    img {
+        width: @size;
+        height: @size;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        margin-left: -@r;
+        margin-top: -@r;
+        transform-origin: center @R+@r;
+
+        each(range(1, @n), {
+            &:nth-child(@{value}){
+              transform: rotate((@value - 1) * @pDeg);
+            }
+        });
+    }
+}
+
+@u: (1/@n * 100%);
+@rotate_duration: 0.6s;
+@stop_duration: 1.2s;
+@duration: ((@rotate_duration + @stop_duration) * @n);
+@back_percent: (@stop_duration / (@rotate_duration + @stop_duration)) * @u;
+
+
+@keyframes move {
+    each(range(1, @n), {
+        @step: @value * @u;
+        @rotate_deg: @value * @pDeg;
+        @back: @step - @back_percent;
+        @{back}, @{step} {
+            transform: rotate(-@rotate_deg);
+        }
+    });
+}
+
+.inner {
+    animation: move @duration linear infinite;
+}
