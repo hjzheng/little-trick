@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@imgWidth: 300px;
+@imgHeight: 400px;
+
+.container {
+  perspective: 1000px;
+  background: #000;
+
+  .ring {
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg) rotateX(0deg);
+    animation: move 15s linear infinite;
+
+    .img {
+      position: absolute;
+      width: @imgWidth;
+      height: @imgHeight;
+      left: 50%;
+      top: 50%;
+      margin-left: calc(-1 * @imgWidth / 2);
+      margin-top: calc(-1 * @imgHeight / 2);
+      background-size: cover;
+      transform: translate3d(0, 0, -500px);
+      backface-visibility: hidden;
+
+      @n: 10;
+      @r: 500px;
+      @pDeg: 360deg / @n;
+      each(range(1, @n), {
+        @d: (@pDeg * @value);
+        @x: sin(@d) * @r;
+        @z: cos(@d) * @r;
+        &:nth-child(@{value}){
+          transform: translate3d(@x, 0, @z) rotateY(@d + 180deg);
+        }
+    });
+    }
+  }
+}
+
+@keyframes move {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
