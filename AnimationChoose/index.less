@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  position: relative;
+
+  .img {
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    background: bisque;
+  }
+
+  .pointer {
+    position: absolute;
+    --thin: 3px; /*线的厚度*/
+    --len: 30px; /*线的长度*/
+    --gap: 15px; /*线与图片的间隙*/
+    --imgSize: 300px; /*图片的大小*/
+    --x: 0px;
+    --y: 0px;
+    left: 0;
+    top: 0;
+    width: calc(var(--imgSize) + var(--gap) * 2);
+    height: calc(var(--imgSize) + var(--gap) * 2);
+    border: var(--thin) solid #000;
+    margin-left: calc(-1 * var(--gap));
+    margin-top: calc(-1 * var(--gap));
+    transform: translate(var(--x), var(--y));
+    transition: 0.5s;
+    -webkit-mask: conic-gradient(at var(--len) var(--len), transparent 75%, blue 75% 100%) 0 0 / 
+      calc(100% - var(--len)) calc(100% - var(--len)) repeat;
+  }
+}
