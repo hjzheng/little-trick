@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG filter</title>
+  <link rel="stylesheet" href="style.css">
+  <!--
+  使用滤镜 css 滤镜太弱了，使用 svg 滤镜
+  https://yoksel.github.io/svg-filters/#/
+  feTurbulence 湍流滤镜
+  feDisplacementMap 置换滤镜
+
+  https://umasss.medium.com/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82svg%E4%B8%AD%E6%89%80%E6%9C%89%E5%B8%B8%E7%94%A8%E7%9A%84%E6%BF%BE%E9%8F%A1-3cfa92768a97
+  -->
+</head>
+<body>
+  <svg style="display:none;">
+    <defs>
+      <filter id="myFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+        <feTurbulence type="turbulence" baseFrequency="0.00001 0.00001" numOctaves="2" seed="2" stitchTiles="stitch" x="0%" y="0%" width="100%" height="100%" result="turbulence"/>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="30" xChannelSelector="R" yChannelSelector="B" x="0%" y="0%" width="100%" height="100%" result="displacementMap"/>
+      </filter>
+    </defs>
+  </svg>
+  <button class="btn">Hover Me</button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="index.js"></script>
+</html>

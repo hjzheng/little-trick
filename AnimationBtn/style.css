@@ -1,0 +1,18 @@
+
+body {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+.btn {
+  background: skyblue;
+  filter: url(#myFilter);
+  width: 200px;
+  height: 60px;
+  border: 0px;
+  border-radius: 4%;
+  cursor: not-allowed;
+}
