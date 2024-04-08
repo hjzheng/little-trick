@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #000;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+}
+.container .ball {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  bottom: 40px;
+  animation: drop 0.5s ease-in infinite alternate;
+}
+.container .ground {
+  position: absolute;
+  bottom: 0;
+  width: 600px;
+  height: 40px;
+  background: #fff;
+}
+@keyframes drop {
+  from {
+    transform: translateY(-300px);
+  }
+  90% {
+    transform: scale(0.8, 1.2);
+  }
+  to {
+    transform: translateY(40px) scale(1.2, 0.8);
+  }
+}

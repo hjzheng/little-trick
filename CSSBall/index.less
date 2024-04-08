@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+}
+
+@ballSize: 80px;
+@groudHeight: 40px;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+
+    .ball {
+        width: @ballSize;
+        height: @ballSize;
+        border-radius: 50%;
+        background: #fff;
+        position: absolute;
+        bottom: @groudHeight;
+        animation: drop 0.5s ease-in infinite alternate;
+    }
+
+    .ground {
+        position: absolute;
+        bottom: 0;
+        width: 600px;
+        height: @groudHeight;
+        background: #fff;
+    }
+
+}
+
+@keyframes drop {
+    from {
+        transform: translateY(-300px);
+    }
+
+    90% {
+        transform: scale(0.8, 1.2);
+    }
+
+    to {
+        transform: translateY(@groudHeight) scale(1.2, 0.8);
+    }
+}
