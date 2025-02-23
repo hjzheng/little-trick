@@ -68,7 +68,12 @@ container.addEventListener("dragenter", (event) => {
 container.addEventListener("drop", (event) => {
     // console.log('drop', event.target)
     clearDropZoneClass()
-    const dropZoneNode = event.target
+    const dropZoneNode = findDropZoneNode(event.target)
+
+    // 他自己
+    if (dropZoneNode.draggable) {
+        return 
+    }
     
     if (source.dataset.effectAllowed !== dropZoneNode.dataset.effectAllowed) {
         return
