@@ -90,12 +90,23 @@ function App() {
       generateTerrain();
     }
 
+    function moveCamera() {
+      // 使相机在x轴和z轴上来回移动，看起来像是在飞行
+      camera.position.y = 10;
+      camera.position.z +=
+        (30*Math.sin(Date.now() * 0.0005) - camera.position.z) * 0.01;
+      camera.position.x +=
+        (3*Math.cos(Date.now() * 0.0005) - camera.position.x) * 0.01;
+      camera.lookAt(0, 0, 0);
+    }
+
     let animationFrameId: number;
     // 动画循环
     function animation() {
 
       animationFrameId = requestAnimationFrame(animation);
       updateTerrain();
+      moveCamera();
       renderer.render(scene, camera);
       gizmo.render();
     }
