@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Speech API 示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Web Speech API 示例</h1>
+<p>点击按钮开始语音识别：</p>
+
+<button id="start-btn">开始语音识别</button>
+<textarea id="result" placeholder="识别结果将显示在这里..."></textarea>
+
+<script>
+    // 检查浏览器是否支持 Web Speech API
+    if (!('webkitSpeechRecognition' in window)) {
+        alert('抱歉，您的浏览器不支持 Web Speech API。');
+    } else {
+        // 创建语音识别对象
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false; // 设置为 false，表示只识别一次
+        recognition.interimResults = true; // 启用临时结果
+        recognition.lang = 'zh-CN'; // 设置识别语言为中文
+
+        // 获取按钮和文本框元素
+        const startBtn = document.getElementById('start-btn');
+        const resultTextarea = document.getElementById('result');
+
+        // 超时计时器
+        let timeoutId;
+
+        // 添加按钮点击事件
+        startBtn.addEventListener('click', () => {
+            recognition.start();
+            startBtn.textContent = '正在监听...';
+            alert('请开始说话。');
+            timeoutId = setTimeout(() => {
+                recognition.stop();
+                alert('识别超时，请重试。');
+            }, 10000); // 10 秒超时
+        });
+
+        // 语音识别结果事件
+        recognition.onresult = (event) => {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    transcript += event.results[i][0].transcript;
+                } else {
+                    transcript += event.results[i][0].transcript + '（识别中...）';
+                }
+            }
+            resultTextarea.value = transcript;
+        };
+
+        // 语音识别结束事件
+        recognition.onend = () => {
+            clearTimeout(timeoutId);
+            if (!resultTextarea.value) {
+                alert('未识别到内容，请重试。');
+            }
+            startBtn.textContent = '开始语音识别';
+        };
+
+        // 语音识别错误事件
+        recognition.onerror = (event) => {
+            console.error('语音识别错误:', event.error);
+            startBtn.textContent = '开始语音识别';
+            alert('识别失败，请重试。');
+        };
+    }
+</script>
+
+</body>
+</html>
