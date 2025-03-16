@@ -8,7 +8,7 @@ type Props = {
 };
 function Board({ squares, onClick, winnerLine }: Props) {
     const renderSquare = (i: number) => {
-        const isWinnerSquare = winnerLine.includes(i);
+        const isWinnerSquare = winnerLine?.includes(i);
         return <Square value={squares[i]} onClick={() => onClick(i)} isWinningSquare={isWinnerSquare} />;
     };
 
